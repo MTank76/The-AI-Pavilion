@@ -69,7 +69,7 @@ A line chart tracking the Win Rate of all franchises from 2008 to 2025, allowing
 
 1.  **Clone the Repository:**
     ```bash
-    git clone https://github.com/manpatell/IPL-Winner-Prediction-2026.git
+    git clone https://github.com/MTank76/The-AI-Pavilion.git
     ```
 2.  **Install Dependencies:**
     ```bash

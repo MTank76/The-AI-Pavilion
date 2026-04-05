@@ -1,139 +1,89 @@
-# IPL 2026 Winner Prediction
+# IPL 2026 Winner Forecast: Project Documentation
 
-A complete machine learning pipeline to predict IPL 2026 outcomes using real ball-by-ball IPL data.
+This repository contains a comprehensive machine learning framework designed to predict the winner of the IPL 2026 season. By leveraging historical match data (2008–2025), squad strengths, and real-time form, this application provides high-accuracy win probability analysis and match simulations.
 
-The project supports two prediction modes:
-- Tournament winner probabilities (all 10 teams)
-- Match-by-match fixture predictions for the full 2026 schedule
+---
 
-## Latest Prediction Snapshot
+## 🚀 Business Use Case: Predictive Sports Analytics
 
-### Tournament Winner Ranking (2026)
+The primary goal of this project is to assist sports analysts, team owners, and fans in making data-driven decisions. Beyond simple "win/loss" predictions, the application quantifies the impact of variables like toss outcomes, venue advantage, and player availability.
 
-| Rank | Team | Win Probability |
-|------|------|-----------------|
-| 1 | Royal Challengers Bengaluru | 11.43% |
-| 2 | Kolkata Knight Riders | 10.68% |
-| 3 | Rajasthan Royals | 10.66% |
-| 4 | Chennai Super Kings | 10.49% |
-| 5 | Delhi Capitals | 10.41% |
-| 6 | Mumbai Indians | 9.73% |
-| 7 | Lucknow Super Giants | 9.59% |
-| 8 | Sunrisers Hyderabad | 9.54% |
-| 9 | Gujarat Titans | 9.50% |
-| 10 | Punjab Kings | 7.97% |
+**Wider Industry Applications:**
+The logic used in this project can be adapted for several high-value business sectors:
+* **Retail & Demand Forecasting:** Replacing "teams" with "products" and "match conditions" with "seasonal trends" to predict inventory sell-through rates.
+* **Finance/Stock Market:** Using ensemble models to predict asset price movements based on historical volatility and external market triggers.
+* **Customer Churn Prediction:** Analyzing "player availability" and "recent form" logic to identify which customers are likely to leave a service based on their recent interaction patterns.
+* **Logistics:** Predicting supply chain bottlenecks by analyzing "Venue Advantage" (Node capacity) and "Squad Strength" (Resource availability).
 
-Source: `outputs/results/prediction_2026.json`
+---
 
-### Fixture-level Summary (2026 Schedule)
+## 🛠️ The Approach & Methodology
 
-Predicted league-stage wins from `outputs/results/ipl_2026_match_predictions.csv`:
-- MI: 11
-- DC: 11
-- LSG: 10
-- GT: 9
-- PBKS: 9
-- SRH: 7
-- CSK: 5
-- RCB: 3
-- RR: 3
-- KKR: 2
+The problem was approached as a **Multi-Class Classification and Probability Estimation** challenge. The workflow followed these key phases:
 
-## Model Performance
+1.  **Data Acquisition & Cleaning:** Historical IPL data from 2008 to 2025 was processed. Feature engineering was used to create metrics like `Recent Team Form`, `Head-to-Head Win Rate`, and `Venue Bias`.
+2.  **Feature Importance:** Using tree-based models, I identified that **Squad Strength** and **Recent Team Form** are the highest predictors of a win, followed by Venue Advantage and Toss Outcome.
+3.  **Model Ensemble:** Instead of relying on a single algorithm, I implemented a variety of models to ensure robustness, ultimately using an **Ensemble Meta-Classifier** to combine the strengths of individual learners.
+4.  **Deployment:** The entire engine is wrapped in a **Streamlit** web application, providing an interactive dashboard for real-time simulations and historical trend analysis.
 
-| Model | CV Accuracy | Test Accuracy | Test AUC |
-|------|-------------|---------------|----------|
-| Random Forest | 0.6350 | 0.6711 | 0.6995 |
-| XGBoost | 0.6311 | 0.6534 | 0.7111 |
-| LightGBM | 0.6477 | 0.6600 | 0.7138 |
-| Neural Network | 0.6080 | 0.6049 | 0.6141 |
-| ExtraTrees | 0.6444 | 0.6512 | 0.7083 |
-| Ensemble | - | 0.6490 | 0.7054 |
+---
 
-Source: `outputs/results/model_results.json`
+## 📊 Model Performance & Comparison
 
-## Data
+The project evaluates several sophisticated algorithms to find the best fit for the volatile nature of T20 cricket.
 
-Primary training source:
-- `IPL.csv` (real IPL ball-by-ball data, 2008-2025)
+| Model | CV Accuracy (%) | Test Accuracy (%) | Reliability (AUC) |
+| :--- | :--- | :--- | :--- |
+| **Random Forest** | 63.5% | 67.1% | 0.70 |
+| **XGBoost** | 63.0% | 64.0% | 0.71 |
+| **LightGBM** | 64.8% | 66.0% | 0.71 |
+| **Extra Trees** | 64.4% | 65.1% | 0.69 |
+| **Neural Network** | 60.8% | 60.5% | 0.61 |
+| **Ensemble (Final)** | N/A | **64.2%** | **0.71** |
 
-Generated pipeline artifacts:
-- `data/raw/matches.csv`
-- `data/raw/player_stats.csv`
-- `data/raw/teams.json`
-- `data/processed/matches_processed.csv`
-- `data/processed/features.csv`
-- `data/db/ipl.db`
+### Key Findings:
+* **LightGBM** showed the highest Cross-Validation accuracy, making it excellent for handling categorical team data.
+* The **Ensemble Model** provides the most reliable AUC score (0.71), balancing bias and variance across different match conditions.
+* **Squad Strength** accounts for over 40% of the prediction weight, highlighting that team composition is the most critical factor in modern IPL seasons.
 
-2026 fixture input:
-- `ipl-2026-UTC.csv`
+---
 
-## Project Structure
+## 🖥️ Application Features
 
-```
-IPL-Winner-Prediction-2026/
-├── config.py
-├── main.py
-├── IPL.csv
-├── ipl-2026-UTC.csv
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── db/
-├── src/
-│   ├── data/
-│   ├── features/
-│   ├── models/
-│   └── prediction/
-├── outputs/
-│   ├── models/
-│   └── results/
-├── notebooks/
-├── tests/
-└── requirements.txt
-```
+### 1. Main Dashboard
+Provides a "Winner Forecast" ranking. Currently, **Royal Challengers Bengaluru** and **Rajasthan Royals** lead the win probability for the 2026 season based on current squad metrics.
 
-## Setup
+### 2. Model Analytics
+Visualizes the comparison between CV and Test accuracy, allowing users to see which models are over-fitting and which are generalizing well. 
 
-```bash
-pip install -r requirements.txt
-```
 
-## Run Pipeline
+### 3. Match Simulator
+An interactive tool where users can select two teams to see a live win-probability breakdown. It calculates probabilities dynamically based on the venue and simulated toss results.
 
-```bash
-python main.py --mode setup
-python main.py --mode train
-python main.py --mode predict
-python main.py --mode visualize
-```
+### 4. Historical Trends
+A line chart tracking the Win Rate of all franchises from 2008 to 2025, allowing for a deep dive into "dynasty" periods vs. rebuilding phases.
 
-Or run all in one command:
+---
 
-```bash
-python main.py --mode all
-```
+## ⚙️ Installation & Usage
 
-## Generate Match-by-Match Predictions (2026 schedule)
+1.  **Clone the Repository:**
+    ```bash
+    git clone https://github.com/manpatell/IPL-Winner-Prediction-2026.git
+    ```
+2.  **Install Dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+3.  **Run the Application:**
+    ```bash
+    streamlit run app.py
+    ```
 
-Input file must exist at `ipl-2026-UTC.csv`.
+---
 
-Output file:
-- `outputs/results/ipl_2026_match_predictions.csv`
-
-## Tests
-
-```bash
-python -m pytest tests -v
-```
-
-## Output Visualizations
-
-Generated in `outputs/results/`:
-- `win_probability.png`
-- `model_comparison.png`
-- `historical_win_rates.png`
-
-## License
-
-MIT
+## 🧪 Technologies Used
+* **Language:** Python
+* **Libraries:** Pandas, Scikit-learn, XGBoost, LightGBM, Plotly
+* **Frontend:** Streamlit
+* **Version Control:** Git

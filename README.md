@@ -48,10 +48,6 @@ The project evaluates several sophisticated algorithms to find the best fit for 
 
 > **Key Insight:** Feature Importance analysis reveals that **Squad Strength** accounts for \~42% of the prediction weight, followed by **Venue Advantage** (18%).
 
-[](https://www.python.org/)
-[](https://the-ai-pavilion-ipl.streamlit.app/)
-[](https://www.google.com/search?q=https://github.com/MTank76/The-AI-Pavilion)
-
 -----
 
 ## 🖥️ Feature Highlights

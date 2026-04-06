@@ -144,12 +144,8 @@ After running the visualization mode, the following assets are available in `out
 To generate match-by-match predictions, ensure the 2026 schedule is located at `ipl-2026-UTC.csv`. The engine will output a detailed breakdown to:
 `outputs/results/ipl_2026_match_predictions.csv`
 
-
-
 -----
 
-
-How does the logic for your "Squad Strength" feature work—is it based on the 2026 auction prices or player stats?
 ## 🧪 Technologies Used
 * **Language:** Python
 * **Libraries:** Pandas, Scikit-learn, XGBoost, LightGBM, Plotly
@@ -158,9 +154,14 @@ How does the logic for your "Squad Strength" feature work—is it based on the 2
 
 -----
 
+## Contributing
+If you would like to contribute to this project, feel free to fork the repository, create a new branch, and submit a pull request. Please ensure your code adheres to the coding guidelines and includes proper documentation.
+
+-----
+
 ## 📜 License
 
-This project is licensed under the **MIT License** - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+This project is licensed under the MIT License [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 -----
 

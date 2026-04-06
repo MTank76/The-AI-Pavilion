@@ -1,4 +1,4 @@
-# IPL 2026 Winner Forecast: Project Documentation
+# The-AI-Pavilion: Project Documentation
 
 This repository contains a comprehensive machine learning framework designed to predict the winner of the IPL 2026 season. By leveraging historical match data (2008–2025), squad strengths, and real-time form, this application provides high-accuracy win probability analysis and match simulations.
 
@@ -46,44 +46,76 @@ The project evaluates several sophisticated algorithms to find the best fit for 
 * The **Ensemble Model** provides the most reliable AUC score (0.71), balancing bias and variance across different match conditions.
 * **Squad Strength** accounts for over 40% of the prediction weight, highlighting that team composition is the most critical factor in modern IPL seasons.
 
----
+> **Key Insight:** Feature Importance analysis reveals that **Squad Strength** accounts for \~42% of the prediction weight, followed by **Venue Advantage** (18%).
 
-## 🖥️ Application Features
+[](https://www.python.org/)
+[](https://the-ai-pavilion-ipl.streamlit.app/)
+[](https://www.google.com/search?q=https://github.com/MTank76/The-AI-Pavilion)
 
-### 1. Main Dashboard
-Provides a "Winner Forecast" ranking. Currently, **Royal Challengers Bengaluru** and **Rajasthan Royals** lead the win probability for the 2026 season based on current squad metrics.
+-----
 
-### 2. Model Analytics
-Visualizes the comparison between CV and Test accuracy, allowing users to see which models are over-fitting and which are generalizing well. 
+## 🖥️ Feature Highlights
 
+### 📍 Match Simulator
 
-### 3. Match Simulator
-An interactive tool where users can select two teams to see a live win-probability breakdown. It calculates probabilities dynamically based on the venue and simulated toss results.
+An interactive sandbox where you can toggle teams, venues, and toss winners. The model updates the win probability in real-time, providing a "Pre-Match Odds" profile.
 
-### 4. Historical Trends
-A line chart tracking the Win Rate of all franchises from 2008 to 2025, allowing for a deep dive into "dynasty" periods vs. rebuilding phases.
+### 📈 Historical Dynasty Tracking
 
----
+A deep dive into franchise performance cycles. Visualize how teams like MI and CSK maintained dominance and identify the "rebuilding phases" of emerging teams.
 
-## ⚙️ Installation & Usage
+### 🏆 2026 Forecast
 
-1.  **Clone the Repository:**
-    ```bash
-    git clone https://github.com/MTank76/The-AI-Pavilion.git
-    ```
-2.  **Install Dependencies:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Run the Application:**
-    ```bash
-    streamlit run app.py
-    ```
+Currently, based on 2025 squad retention and form metrics, the model identifies **Royal Challengers Bengaluru (RCB)** and **Rajasthan Royals (RR)** as the primary contenders for the 2026 title.
 
----
+-----
 
+## ⚙️ Installation & Local Setup
+
+**1. Clone the environment**
+
+```bash
+git clone https://github.com/MTank76/The-AI-Pavilion.git
+cd The-AI-Pavilion
+```
+
+**2. Setup Virtual Environment**
+
+```bash
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+**3. Install Dependencies**
+
+```bash
+pip install -r requirements.txt
+```
+
+**4. Fire up the Dashboard**
+
+```bash
+streamlit run app.py
+```
+
+-----
+
+## 📂 Project Structure
+
+```text
+├── data/               # Historical IPL Datasets (2008-2025)
+├── models/             # Saved Ensemble & Individual Pickles
+├── notebooks/          # EDA & Model Training Scripts
+├── src/                # Modular Python logic for Feature Engineering
+├── app.py              # Streamlit UI & Logic
+└── requirements.txt    # Dependency Manifest
+```
 ## 🧪 Technologies Used
 * **Language:** Python
 * **Libraries:** Pandas, Scikit-learn, XGBoost, LightGBM, Plotly
 * **Frontend:** Streamlit
 * **Version Control:** Git
+
+-----
+
+

@@ -88,12 +88,19 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-**4. Fire up the Dashboard**
+**4. Start up the Models**
+
+```bash
+python main.py --mode all
+```
+
+**5. Fire up the Dashboard**
 
 ```bash
 streamlit run app.py
 ```
 
+> **Quick Start:** \> `pip install -r requirements.txt && python main.py --mode all`
 -----
 
 ## 📂 Project Structure
@@ -104,8 +111,45 @@ streamlit run app.py
 ├── notebooks/          # EDA & Model Training Scripts
 ├── src/                # Modular Python logic for Feature Engineering
 ├── app.py              # Streamlit UI & Logic
+└── ML_SS/              # Terminal Output Screenshots  
 └── requirements.txt    # Dependency Manifest
 ```
+
+## 🛠️ Execution Pipeline
+
+The project features a modular `main.py` entry point to handle the full data science lifecycle.
+
+| Command | Description |
+| :--- | :--- |
+| `python main.py --mode setup` | Cleans raw data and initializes directory structures. |
+| `python main.py --mode train` | Executes the Ensemble training and saves models to `/models`. |
+| `python main.py --mode predict` | Generates forecasts for the IPL 2026 season. |
+| `python main.py --mode visualize` | Generates performance and trend charts. |
+| **`python main.py --mode all`** | **Runs the entire end-to-end pipeline in one go.** |
+
+-----
+
+## 📊 Generated Visualizations
+
+After running the visualization mode, the following assets are available in `outputs/results/`:
+
+  * **`win_probability.png`**: A distribution of winning chances for the 2026 franchises.
+  * **`model_comparison.png`**: Accuracy and AUC metrics across all tested algorithms.
+  * **`historical_win_rates.png`**: Time-series analysis of team performance since 2008.
+    
+-----
+
+### 🎯 2026 Season Predictions
+
+To generate match-by-match predictions, ensure the 2026 schedule is located at `ipl-2026-UTC.csv`. The engine will output a detailed breakdown to:
+`outputs/results/ipl_2026_match_predictions.csv`
+
+
+
+-----
+
+
+How does the logic for your "Squad Strength" feature work—is it based on the 2026 auction prices or player stats?
 ## 🧪 Technologies Used
 * **Language:** Python
 * **Libraries:** Pandas, Scikit-learn, XGBoost, LightGBM, Plotly
@@ -114,4 +158,9 @@ streamlit run app.py
 
 -----
 
+## 📜 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](https://www.google.com/search?q=LICENSE) file for details.
+
+-----
 
